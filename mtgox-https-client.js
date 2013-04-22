@@ -59,7 +59,7 @@ MtGoxClient.prototype.query = function(path, args, callback) {
         req.end();
 };
  
-var client = new MtGoxClient('', '');
+var client = new MtGoxClient('my_key', 'my_secret');
 client.query('money/wallet/history', {"currency":"BTC"}, function(json) {
         // output the json history object 
         console.log(json);
