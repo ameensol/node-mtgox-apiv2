@@ -1,23 +1,19 @@
-MtGOX API v2 Node Example
+#MtGOX API v2 Node Example
 
-This is node.js example for using Mt.GOX's HTTP API v2.
+This is node.js implementation for using Mt.GOX's HTTP API v2.
+To use it, you must have already created an API Key on their [website](https://mtgox.com/security).
 
-To use, you must have already created an API Key on their website.
-If you haven't already done so, go to: https://mtgox.com/security
+#Credit where it's due
 
-In this example, once you input your API Key and Secret, the client will output
-your recent transactions.  
+nitrous - for the excellent API v2 [documentation](https://bitbucket.org/nitrous/mtgox-api/) that made this possible. Check out the docs to better understand the method parameters and resulting data objects.
 
-Credit for excellent API v2 documentation goes to nitrous:
-https://bitbucket.org/nitrous/mtgox-api/
+[scud43](https://github.com/scud43) - for the work on the node-campbx repo, which this is borrowing very heavily from.
 
-Read the above documentation to find out how to perform other actions.
-
-This is based completely and utterly on the Node.js example found on the bitcoin wiki:
-https://en.bitcoin.it/wiki/Node.js_Example
+anonymous wiki updater - for creating the Mt.Gox HTTP API [v1 node.js client](https://en.bitcoin.it/wiki/Node.js_Example) on the bitcoin wiki, which this client is entirely based on.  Let's face it, people that update wikis are just better people than you and I, and deserve some credit.  
 
 
-Stay tuned for a more complete API v2 client in the future...
+
+Stay tuned for more stuff...
 
 
 
