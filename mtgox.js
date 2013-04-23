@@ -1,6 +1,7 @@
 var querystring = require('querystring'),
     https = require('https'),
-    jsSHA = require('./lib/jsSHA/src/sha_dev.js');
+    //jsSHA = require('./lib/jsSHA/src/sha_dev.js');
+    crypto = require('crypto');
 
 function MtGoxClient(key, secret) {
     var self = this;
@@ -38,7 +39,7 @@ function MtGoxClient(key, secret) {
             });
             res.on('end', function() {
                 if (typeof callback == "function") {
-                    callback(JSON.parse(buffer));
+                    callback(null, JSON.parse(buffer));
                 }
             });
 
@@ -46,7 +47,7 @@ function MtGoxClient(key, secret) {
 
         // basic error management
         req.on('error', function(e) {
-            console.log('warning: problem with request: ' + e.message);
+            callback(e);
         });
 
         req.end();
@@ -67,12 +68,16 @@ function MtGoxClient(key, secret) {
         var post = querystring.stringify(args);
         // append the path to the post data
         var message = path + "\0" + post;
+        // compute the sha512 signature of the message
+        var hmac = crypto.createHmac('sha512', new Buffer(self.secret, 'base64'));
+        hmac.update(message);
+
         // create a new instance of the jsSHA object with our message
-        var shaObj = new jsSHA.jsSHA(message, "TEXT");
+        //var shaObj = new jsSHA.jsSHA(message, "TEXT");
         // Decode the API secret using Base64
         // Perform the HMAC algorithm using SHA-512 for the encryption method
         // Encode the result using Base 64
-        var hmac = shaObj.getHMAC(self.secret, "B64", "SHA-512", "B64");
+        //var hmac = shaObj.getHMAC(self.secret, "B64", "SHA-512", "B64");
 
         // this is our query
         var options = {
@@ -82,7 +87,7 @@ function MtGoxClient(key, secret) {
             agent: false,
             headers: {
                 'Rest-Key': self.key,
-                'Rest-Sign': hmac,
+                'Rest-Sign': hmac.digest('base64'),
                 'User-Agent': 'Mozilla/4.0 (compatible; MtGox node.js client)',
                 'Content-type': 'application/x-www-form-urlencoded',
                 'Content-Length': post.length
@@ -98,14 +103,14 @@ function MtGoxClient(key, secret) {
             });
             res.on('end', function() {
                 if (typeof callback == "function") {
-                    callback(JSON.parse(buffer));
+                    callback(null, JSON.parse(buffer));
                 }
             });
         });
 
         // basic error management
         req.on('error', function(e) {
-            console.log('warning: problem with request: ' + e.message);
+            callback(e);
         });
 
         // post the data
