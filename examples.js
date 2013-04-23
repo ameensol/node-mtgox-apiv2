@@ -76,7 +76,7 @@ client.fullDepth(function(json) {
 });
 
 client.history("USD", null, function(json) {
-    console.log("---------------Full Depth:--------------");
+    console.log("---------------History:--------------");
     json.data.result.forEach(function(el) {
         console.log(el);
     });
