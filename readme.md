@@ -1,4 +1,4 @@
-#MtGOX API v2 Node Example
+#MtGOX API v2 Node Client
 
 This is node.js implementation for using Mt.GOX's HTTP API v2.
 To use it, you must have already created an API Key on their [website](https://mtgox.com/security).
