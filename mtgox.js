@@ -1,6 +1,5 @@
 var querystring = require('querystring'),
     https = require('https'),
-    //jsSHA = require('./lib/jsSHA/src/sha_dev.js');
     crypto = require('crypto');
 
 function MtGoxClient(key, secret) {
@@ -72,13 +71,6 @@ function MtGoxClient(key, secret) {
         var hmac = crypto.createHmac('sha512', new Buffer(self.secret, 'base64'));
         hmac.update(message);
 
-        // create a new instance of the jsSHA object with our message
-        //var shaObj = new jsSHA.jsSHA(message, "TEXT");
-        // Decode the API secret using Base64
-        // Perform the HMAC algorithm using SHA-512 for the encryption method
-        // Encode the result using Base 64
-        //var hmac = shaObj.getHMAC(self.secret, "B64", "SHA-512", "B64");
-
         // this is our query
         var options = {
             host: 'data.mtgox.com',
@@ -132,7 +124,6 @@ function MtGoxClient(key, secret) {
 
     self.currency = function(callback) {
         self.makePublicRequest("BTCUSD/money/currency", {}, callback);
-        //self.makeRequest("BTCUSD/money/currency", {}, callback);
     };
 
     self.ticker = function(callback) {
