@@ -47,8 +47,8 @@ client.quote("ask", 100000000, function(err, json) {
     console.log(json);
 });
 
-/* Will place a bid for 1 bitcoin at a price of 1 dollar,
- * Commented for your protection
+// Will place a bid for 1 bitcoin at a price of 1 dollar,
+/* Commented for your protection
 client.add("bid", "1", "1", function(err, json) {
     if (err) { throw err; }
     console.log("---------------Add:--------------");
