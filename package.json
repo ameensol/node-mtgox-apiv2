@@ -8,7 +8,7 @@
 		"mtgox"
 	],
 	"author": {
-		"name": "Ameen Soleimani",
+		"name": "Ameen Soleimani"
 	},
 	"contributors": [
 		{
@@ -17,7 +17,7 @@
 	],
 	"license": "MIT",
 	"dependencies": {
-		"querystring": "0.2.0",	
+		"querystring": "0.2.0"
 	},
 	"repository": {
 		"type": "git",
