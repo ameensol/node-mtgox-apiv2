@@ -13,10 +13,7 @@ function MtGoxClient(key, secret) {
     if (typeof args != 'object') args = {};
 
     var params = querystring.stringify(args);
-
-    if (params) {
-      path = path + '?' + params;
-    }
+    if (params) path = path + '?' + params;
 
     // query parameters
     var options = {
@@ -42,8 +39,7 @@ function MtGoxClient(key, secret) {
             callback(null, JSON.parse(buffer));
           } catch (err) {
             if (buffer.indexOf('<') != -1) {
-              err = new Error('MtGox is offline');
-              callback(err);
+              callback(new Error('MtGox is offline'));
             } else {
               callback(err);
             }
@@ -72,7 +68,7 @@ function MtGoxClient(key, secret) {
     if (typeof args != 'object') args = {};
 
     // generate a nonce
-    args['nonce'] = (new Date()).getTime() * 1000;
+    args.nonce = (new Date()).getTime() * 1000;
     // compute the post data
     var post = querystring.stringify(args);
     // append the path to the post data
@@ -157,18 +153,11 @@ function MtGoxClient(key, secret) {
 
   // price is an optional argument, if not used it must be set to null
   self.add = function(type, amount, price, callback) {
-    if (price) {
-      var args = {
-        'type': type,
-        'amount': amount,
-        'price': price
-      };
-    } else {
-      var args = {
-        'type': type,
-        'amount': amount
-      };
-    }
+    var args = {
+      'type': type,
+      'amount': amount
+    };
+    if (price) args.price = price;
     self.makeRequest('BTCUSD/money/order/add', args, callback);
   };
 
@@ -192,13 +181,8 @@ function MtGoxClient(key, secret) {
 
   // since is an optional argument, if not used it must be set to null
   self.fetchTrades = function(since, callback) {
-    if (since) {
-      var args = {
-        'since': since
-      };
-    } else {
-      var args = {};
-    }
+    var args = {};
+    if (since) args.since = since;
     self.makePublicRequest('BTCUSD/money/trades/fetch', args, callback);
   };
 
@@ -212,16 +196,8 @@ function MtGoxClient(key, secret) {
 
   // page is an optional argument, if not used it must be set to null
   self.history = function(currency, page, callback) {
-    if (page) {
-      var args = {
-        'currency': currency,
-        'page': page
-      };
-    } else {
-      var args = {
-        'currency': currency
-      };
-    }
+    var args = { 'currency': currency };
+    if (page) args.page = page;
     self.makeRequest('money/wallet/history', args, callback);
   };
 
