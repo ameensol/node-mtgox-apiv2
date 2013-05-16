@@ -10,7 +10,7 @@ function MtGoxClient(key, secret) {
   self.makePublicRequest = function(path, args, callback) {
 
     // add any arguments as a query string to the url
-    if (typeof args != "object") args = {};
+    if (typeof args != 'object') args = {};
 
     var params = querystring.stringify(args);
 
@@ -37,12 +37,12 @@ function MtGoxClient(key, secret) {
         buffer += data;
       });
       res.on('end', function() {
-        if (typeof callback == "function") {
+        if (typeof callback == 'function') {
           try {
             callback(null, JSON.parse(buffer));
           } catch (err) {
-            if (buffer.indexOf("<") != -1) {
-              err = new Error("MtGox is offline");
+            if (buffer.indexOf('<') != -1) {
+              err = new Error('MtGox is offline');
               callback(err);
             } else {
               callback(err);
@@ -65,18 +65,18 @@ function MtGoxClient(key, secret) {
   self.makeRequest = function(path, args, callback) {
 
     if (!self.key || !self.secret) {
-      throw "Must provide username and password to make this API request.";
+      throw 'Must provide username and password to make this API request.';
     }
 
     // if no args or invalid args provided, just reset the arg object
-    if (typeof args != "object") args = {};
+    if (typeof args != 'object') args = {};
 
     // generate a nonce
     args['nonce'] = (new Date()).getTime() * 1000;
     // compute the post data
     var post = querystring.stringify(args);
     // append the path to the post data
-    var message = path + "\0" + post;
+    var message = path + '\0' + post;
     // compute the sha512 signature of the message
     var hmac = crypto.createHmac('sha512', new Buffer(self.secret, 'base64'));
     hmac.update(message);
@@ -104,7 +104,7 @@ function MtGoxClient(key, secret) {
         buffer += data;
       });
       res.on('end', function() {
-        if (typeof callback == "function") {
+        if (typeof callback == 'function') {
           try {
             callback(null, JSON.parse(buffer));
           } catch (err) {
@@ -125,33 +125,33 @@ function MtGoxClient(key, secret) {
   };
 
   self.info = function(callback) {
-    self.makeRequest("BTCUSD/money/info", {}, callback);
+    self.makeRequest('BTCUSD/money/info', {}, callback);
   };
 
   self.idKey = function(callback) {
-    self.makeRequest("BTCUSD/money/idkey", {}, callback);
+    self.makeRequest('BTCUSD/money/idkey', {}, callback);
   };
 
   self.orders = function(callback) {
-    self.makeRequest("BTCUSD/money/orders", {}, callback);
+    self.makeRequest('BTCUSD/money/orders', {}, callback);
   };
 
   self.currency = function(callback) {
-    self.makePublicRequest("BTCUSD/money/currency", {}, callback);
+    self.makePublicRequest('BTCUSD/money/currency', {}, callback);
   };
 
   self.ticker = function(callback) {
-    self.makePublicRequest("BTCUSD/money/ticker", {}, callback);
+    self.makePublicRequest('BTCUSD/money/ticker', {}, callback);
   };
 
   self.tickerFast = function(callback) {
-    self.makePublicRequest("BTCUSD/money/ticker_fast", {}, callback);
+    self.makePublicRequest('BTCUSD/money/ticker_fast', {}, callback);
   };
 
   self.quote = function(type, amount, callback) {
-    self.makePublicRequest("BTCUSD/money/order/quote", {
-      "type": type,
-      "amount": amount
+    self.makePublicRequest('BTCUSD/money/order/quote', {
+      'type': type,
+      'amount': amount
     }, callback);
   };
 
@@ -159,70 +159,70 @@ function MtGoxClient(key, secret) {
   self.add = function(type, amount, price, callback) {
     if (price) {
       var args = {
-        "type": type,
-        "amount": amount,
-        "price": price
+        'type': type,
+        'amount': amount,
+        'price': price
       };
     } else {
       var args = {
-        "type": type,
-        "amount": amount
+        'type': type,
+        'amount': amount
       };
     }
-    self.makeRequest("BTCUSD/money/order/add", args, callback);
+    self.makeRequest('BTCUSD/money/order/add', args, callback);
   };
 
   self.cancel = function(id, callback) {
-    self.makeRequest("BTCUSD/money/order/cancel", {
-      "oid": id
+    self.makeRequest('BTCUSD/money/order/cancel', {
+      'oid': id
     }, callback);
   };
 
   // not currently implemented
   self.result = function(type, order, callback) {
-    self.makeRequest("BTCUSD/money/order/result", {
-      "type": type,
-      "order": order
+    self.makeRequest('BTCUSD/money/order/result', {
+      'type': type,
+      'order': order
     }, callback);
   };
 
   self.lag = function(callback) {
-    self.makePublicRequest("BTCUSD/money/order/lag", {}, callback);
+    self.makePublicRequest('BTCUSD/money/order/lag', {}, callback);
   };
 
   // since is an optional argument, if not used it must be set to null
   self.fetchTrades = function(since, callback) {
     if (since) {
       var args = {
-        "since": since
+        'since': since
       };
     } else {
       var args = {};
     }
-    self.makePublicRequest("BTCUSD/money/trades/fetch", args, callback);
+    self.makePublicRequest('BTCUSD/money/trades/fetch', args, callback);
   };
 
   self.fetchDepth = function(callback) {
-    self.makePublicRequest("BTCUSD/money/depth/fetch", {}, callback);
+    self.makePublicRequest('BTCUSD/money/depth/fetch', {}, callback);
   };
 
   self.fullDepth = function(callback) {
-    self.makePublicRequest("BTCUSD/money/depth/full", {}, callback);
+    self.makePublicRequest('BTCUSD/money/depth/full', {}, callback);
   };
 
   // page is an optional argument, if not used it must be set to null
   self.history = function(currency, page, callback) {
     if (page) {
       var args = {
-        "currency": currency,
-        "page": page
+        'currency': currency,
+        'page': page
       };
     } else {
       var args = {
-        "currency": currency
+        'currency': currency
       };
     }
-    self.makeRequest("money/wallet/history", args, callback);
+    self.makeRequest('money/wallet/history', args, callback);
   };
 
   // More to come!
