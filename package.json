@@ -1,36 +1,32 @@
 {
-	"name": "mtgox-apiv2",
-	"version": "1.0.1",
-	"description": "mtgox.com API v2 client for node.js",
-	"keywords": [
-		"btc", 
-		"bitcoin", 
-		"mtgox"
-	],
-	"author": {
-		"name": "Ameen Soleimani"
-	},
-	"contributors": [
-		{
-			"name": "Preston Skupinski",
-			"name": "Lars-Magnus Skog"
-		}
-	],
-	"license": "MIT",
-	"dependencies": {
-		"querystring": "0.2.0"
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/ameen3/node-mtgox-apiv2"
-	},
-	"main": "mtgox.js",
-	"engines": {
-		"node": "~0.10"
-	},
-	"bugs": {
-		"url": "https://github.com/ameen3/node-mtgox-apiv2/issues",
-		"email": "ameen.sol@gmail.com"
-	},
-	"readmeFilename": "README.md"
+  "name": "mtgox-apiv2",
+  "version": "1.0.1",
+  "description": "mtgox.com API v2 client for node.js",
+  "keywords": [
+    "btc",
+    "bitcoin",
+    "mtgox"
+  ],
+  "author": "Ameen Soleimani (https://github.com/ameen3)",
+  "contributors": [
+    "Preston Skupinski <skupinsk@msu.edu> (https://github.com/pskupinski)",
+    "Lars-Magnus Skog <lars.magnus.skog@gmail.com> (https://github.com/ralphtheninja)"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "querystring": "0.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ameen3/node-mtgox-apiv2"
+  },
+  "main": "mtgox.js",
+  "engines": {
+    "node": "~0.10"
+  },
+  "bugs": {
+    "url": "https://github.com/ameen3/node-mtgox-apiv2/issues",
+    "email": "ameen.sol@gmail.com"
+  },
+  "readmeFilename": "README.md"
 }
