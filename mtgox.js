@@ -61,7 +61,7 @@ function MtGoxClient(key, secret) {
   self.makeRequest = function(path, args, callback) {
 
     if (!self.key || !self.secret) {
-      throw 'Must provide username and password to make this API request.';
+      throw 'Must provide key and secret to make this API request.';
     }
 
     // if no args or invalid args provided, just reset the arg object
