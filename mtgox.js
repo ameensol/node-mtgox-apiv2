@@ -2,10 +2,11 @@ var querystring = require('querystring'),
   https = require('https'),
   crypto = require('crypto');
 
-function MtGoxClient(key, secret) {
+function MtGoxClient(key, secret, currency) {
   var self = this;
   self.key = key;
   self.secret = secret;
+  self._currency = currency || 'BTCUSD';
 
   self.makePublicRequest = function(path, args, callback) {
 
@@ -120,32 +121,36 @@ function MtGoxClient(key, secret) {
     req.end();
   };
 
+  self.setCurrency = function(currency) {
+    self._currency = currency;
+  };
+
   self.info = function(callback) {
-    self.makeRequest('BTCUSD/money/info', {}, callback);
+    self.makeRequest(self._currency + "/money/info", {}, callback);
   };
 
   self.idKey = function(callback) {
-    self.makeRequest('BTCUSD/money/idkey', {}, callback);
+    self.makeRequest(self._currency + "/money/idkey", {}, callback);
   };
 
   self.orders = function(callback) {
-    self.makeRequest('BTCUSD/money/orders', {}, callback);
+    self.makeRequest(self._currency + "/money/orders", {}, callback);
   };
 
   self.currency = function(callback) {
-    self.makePublicRequest('BTCUSD/money/currency', {}, callback);
+    self.makePublicRequest(self._currency + "/money/currency", {}, callback);
   };
 
   self.ticker = function(callback) {
-    self.makePublicRequest('BTCUSD/money/ticker', {}, callback);
+    self.makePublicRequest(self._currency + "/money/ticker", {}, callback);
   };
 
   self.tickerFast = function(callback) {
-    self.makePublicRequest('BTCUSD/money/ticker_fast', {}, callback);
+    self.makePublicRequest(self._currency + "/money/ticker_fast", {}, callback);
   };
 
   self.quote = function(type, amount, callback) {
-    self.makePublicRequest('BTCUSD/money/order/quote', {
+    self.makePublicRequest(self._currency + "/money/order/quote", {
       'type': type,
       'amount': amount
     }, callback);
@@ -158,47 +163,47 @@ function MtGoxClient(key, secret) {
       'amount': amount
     };
     if (price) args.price = price;
-    self.makeRequest('BTCUSD/money/order/add', args, callback);
+    self.makeRequest(self._currency + "money/order/add", args, callback);
   };
 
   self.cancel = function(id, callback) {
-    self.makeRequest('BTCUSD/money/order/cancel', {
+    self.makeRequest(self._currency + "/money/order/cancel", {
       'oid': id
     }, callback);
   };
 
   // not currently implemented
   self.result = function(type, order, callback) {
-    self.makeRequest('BTCUSD/money/order/result', {
+    self.makeRequest(self._currency + "/money/order/result", {
       'type': type,
       'order': order
     }, callback);
   };
 
   self.lag = function(callback) {
-    self.makePublicRequest('BTCUSD/money/order/lag', {}, callback);
+    self.makePublicRequest(self._currency + "/money/order/lag", {}, callback);
   };
 
   // since is an optional argument, if not used it must be set to null
   self.fetchTrades = function(since, callback) {
     var args = {};
     if (since) args.since = since;
-    self.makePublicRequest('BTCUSD/money/trades/fetch', args, callback);
+    self.makePublicRequest(self._currency + "/money/trades/fetch", args, callback);
   };
 
   self.fetchDepth = function(callback) {
-    self.makePublicRequest('BTCUSD/money/depth/fetch', {}, callback);
+    self.makePublicRequest(self._currency + "/money/depth/fetch", {}, callback);
   };
 
   self.fullDepth = function(callback) {
-    self.makePublicRequest('BTCUSD/money/depth/full', {}, callback);
+    self.makePublicRequest(self._currency + "/money/depth/full", {}, callback);
   };
 
   // page is an optional argument, if not used it must be set to null
   self.history = function(currency, page, callback) {
     var args = { 'currency': currency };
     if (page) args.page = page;
-    self.makeRequest('money/wallet/history', args, callback);
+    self.makeRequest("money/wallet/history", args, callback);
   };
 
   // More to come!
