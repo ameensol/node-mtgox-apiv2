@@ -1,15 +1,15 @@
 var MtGoxClient = require("./mtgox");
 
-var client = new MtGoxClient('my_key', 'my_secret');
+var client = new MtGoxClient("my_key", "my_secret");
 
-// If too many of these functions are called at the same time, 
+// If too many of these functions are called at the same time,
 // you may get an "invalid nonce" error - comment what you don't need.
 
 client.info(function(err, json) {
     if (err) { throw err; }
     console.log("---------------Client Info:--------------");
     console.log(json);
-}); 
+});
 
 client.idKey(function(err, json) {
     if (err) { throw err; }
@@ -67,10 +67,13 @@ client.lag(function(err, json) {
     console.log(json);
 });
 
-client.fetchTrades(null, function(err, json) {
-    if (err) { throw err; }
-    console.log("---------------Fetch Trades:--------------");
-    console.log(json);
+console.log("---------------Fetch Trades:--------------");
+var trades = client.fetchTrades()
+trades.on("data", function (json) {
+  console.log(json);
+});
+trades.on("error", function (error) {
+  console.log(error);
 });
 
 client.fetchDepth(function(err, json) {
