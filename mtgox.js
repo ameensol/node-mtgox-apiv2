@@ -1,6 +1,7 @@
 var querystring = require("querystring"),
-  https = require("https"),
-  crypto = require("crypto");
+  crypto = require("crypto"),
+  request = require("request"),
+  JSONStream = require("JSONStream");
 
 function MtGoxClient(key, secret, currency) {
   var self = this;
@@ -9,116 +10,62 @@ function MtGoxClient(key, secret, currency) {
   self._currency = currency || "BTCUSD";
 
   function makePublicRequest(path, args, callback) {
-
-    // add any arguments as a query string to the url
-    if (typeof args != "object") args = {};
-
     var params = querystring.stringify(args);
     if (params) path = path + "?" + params;
+    return executeRequest(basicOptions(path), callback);
+  }
 
-    // query parameters
-    var options = {
-      host: "data.mtgox.com",
-      path: "/api/2/" + path,
-      method: "GET",
+  function makeRequest(path, args, callback) {
+    if (!self.key || !self.secret) {
+      throw "Must provide key and secret to make this API request.";
+    }
+
+    // generate a nonce
+    args.nonce = (new Date()).getTime() * 1000;
+    // compute the post data
+    var postData = querystring.stringify(args);
+    // append the path to the post data
+    var message = path + "\0" + postData;
+    // compute the sha512 signature of the message
+    var hmac = crypto.createHmac("sha512", new Buffer(self.secret, "base64"));
+    hmac.update(message);
+
+    var options = basicOptions(path);
+
+    options.method = "POST";
+    options.body = postData;
+    options.headers["Rest-Key"] = self.key;
+    options.headers["Rest-Sign"] = hmac.digest("base64");
+    options.headers["Content-Length"] = postData.length;
+
+    return executeRequest(options, callback);
+  }
+
+  function executeRequest(options, callback) {
+    if (typeof callback == "function") {
+      request(options, function (err, res, body) {
+        if (res.statusCode == 200) {
+          callback(null, JSON.parse(body));
+        } else {
+          callback(new Error("Request failed with " + res.statusCode));
+        }
+      });
+    } else {
+      var parser = JSONStream.parse(["data", true]);
+      request.get(options).pipe(parser);
+      return parser;
+    }
+  }
+
+  function basicOptions(path) {
+    return {
+      uri: "https://data.mtgox.com/api/2/" + path,
       agent: false,
       headers: {
         "User-Agent": "Mozilla/4.0 (compatible; MtGox node.js client)",
         "Content-type": "application/x-www-form-urlencoded"
       }
     };
-
-    var req = https.request(options, function(res) {
-      res.setEncoding("utf8");
-      var buffer = "";
-      res.on("data", function(data) {
-        buffer += data;
-      });
-      res.on("end", function() {
-        if (typeof callback == "function") {
-          try {
-            callback(null, JSON.parse(buffer));
-          } catch (err) {
-            if (buffer.indexOf("<") != -1) {
-              callback(new Error("MtGox is offline"));
-            } else {
-              callback(err);
-            }
-
-          }
-        }
-      });
-
-    });
-
-    // basic error management
-    req.on("error", function(e) {
-      callback(e);
-    });
-
-    req.end();
-  }
-
-  function makeRequest(path, args, callback) {
-
-    if (!self.key || !self.secret) {
-      throw "Must provide key and secret to make this API request.";
-    }
-
-    // if no args or invalid args provided, just reset the arg object
-    if (typeof args != "object") args = {};
-
-    // generate a nonce
-    args.nonce = (new Date()).getTime() * 1000;
-    // compute the post data
-    var post = querystring.stringify(args);
-    // append the path to the post data
-    var message = path + "\0" + post;
-    // compute the sha512 signature of the message
-    var hmac = crypto.createHmac("sha512", new Buffer(self.secret, "base64"));
-    hmac.update(message);
-
-    // this is our query
-    var options = {
-      host: "data.mtgox.com",
-      path: "/api/2/" + path,
-      method: "POST",
-      agent: false,
-      headers: {
-        "Rest-Key": self.key,
-        "Rest-Sign": hmac.digest("base64"),
-        "User-Agent": "Mozilla/4.0 (compatible; MtGox node.js client)",
-        "Content-type": "application/x-www-form-urlencoded",
-        "Content-Length": post.length
-      }
-    };
-
-    // run the query, buffer the data and call the callback
-    var req = https.request(options, function(res) {
-      res.setEncoding("utf8");
-      var buffer = "";
-      res.on("data", function(data) {
-        buffer += data;
-      });
-      res.on("end", function() {
-        if (typeof callback == "function") {
-          try {
-            callback(null, JSON.parse(buffer));
-          } catch (err) {
-            callback(err);
-          }
-        }
-      });
-    });
-
-    // basic error management
-    req.on("error", function(e) {
-      callback(e);
-    });
-
-    // post the data
-    req.write(post);
-    req.end();
   }
 
   self.setCurrency = function(currency) {
@@ -184,11 +131,10 @@ function MtGoxClient(key, secret, currency) {
     makePublicRequest(self._currency + "/money/order/lag", {}, callback);
   };
 
-  // since is an optional argument, if not used it must be set to null
-  self.fetchTrades = function(since, callback) {
+  self.fetchTrades = function(since) {
     var args = {};
     if (since) args.since = since;
-    makePublicRequest(self._currency + "/money/trades/fetch", args, callback);
+    return makePublicRequest(self._currency + "/money/trades/fetch", args);
   };
 
   self.fetchDepth = function(callback) {
