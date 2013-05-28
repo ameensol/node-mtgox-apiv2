@@ -110,7 +110,7 @@ function MtGoxClient(key, secret, currency) {
       "amount": amount
     };
     if (price) args.price = price;
-    makeRequest(self._currency + "money/order/add", args, callback);
+    makeRequest(self._currency + "/money/order/add", args, callback);
   };
 
   self.cancel = function(id, callback) {
