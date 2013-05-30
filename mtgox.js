@@ -131,10 +131,10 @@ function MtGoxClient(key, secret, currency) {
     makePublicRequest(self._currency + "/money/order/lag", {}, callback);
   };
 
-  self.fetchTrades = function(since) {
+  self.fetchTrades = function(since, callback) {
     var args = {};
     if (since) args.since = since;
-    return makePublicRequest(self._currency + "/money/trades/fetch", args);
+    return makePublicRequest(self._currency + "/money/trades/fetch", args, callback);
   };
 
   self.fetchDepth = function(callback) {
