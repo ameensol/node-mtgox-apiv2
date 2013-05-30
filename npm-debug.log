@@ -1,0 +1,151 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node', '/usr/local/bin/npm', 'publish' ]
+2 info using npm@1.2.18
+3 info using node@v0.10.4
+4 verbose publish [ '.' ]
+5 verbose read json /home/ameen/Desktop/Things/open_source/node-mtgox-apiv2/package.json
+6 verbose cache add [ '.', null ]
+7 verbose cache add name=undefined spec="." args=[".",null]
+8 verbose parsed url { protocol: null,
+8 verbose parsed url   slashes: null,
+8 verbose parsed url   auth: null,
+8 verbose parsed url   host: null,
+8 verbose parsed url   port: null,
+8 verbose parsed url   hostname: null,
+8 verbose parsed url   hash: null,
+8 verbose parsed url   search: null,
+8 verbose parsed url   query: null,
+8 verbose parsed url   pathname: '.',
+8 verbose parsed url   path: '.',
+8 verbose parsed url   href: '.' }
+9 silly lockFile 3a52ce78- .
+10 verbose lock . /home/ameen/.npm/3a52ce78-.lock
+11 verbose read json package.json
+12 verbose tar pack [ '/home/ameen/tmp/npm-8857/1369955783018-0.08236022316850722/tmp.tgz',
+12 verbose tar pack   '.' ]
+13 verbose tarball /home/ameen/tmp/npm-8857/1369955783018-0.08236022316850722/tmp.tgz
+14 verbose folder .
+15 info prepublish mtgox-apiv2@1.0.3
+16 silly lockFile 3a52ce78- .
+17 verbose lock . /home/ameen/.npm/3a52ce78-.lock
+18 silly lockFile 401b39a2-3018-0-08236022316850722-tmp-tgz /home/ameen/tmp/npm-8857/1369955783018-0.08236022316850722/tmp.tgz
+19 verbose lock /home/ameen/tmp/npm-8857/1369955783018-0.08236022316850722/tmp.tgz /home/ameen/.npm/401b39a2-3018-0-08236022316850722-tmp-tgz.lock
+20 silly lockFile 3a52ce78- .
+21 silly lockFile 3a52ce78- .
+22 silly lockFile 401b39a2-3018-0-08236022316850722-tmp-tgz /home/ameen/tmp/npm-8857/1369955783018-0.08236022316850722/tmp.tgz
+23 silly lockFile 401b39a2-3018-0-08236022316850722-tmp-tgz /home/ameen/tmp/npm-8857/1369955783018-0.08236022316850722/tmp.tgz
+24 verbose tar unpack /home/ameen/tmp/npm-8857/1369955783018-0.08236022316850722/tmp.tgz
+25 silly lockFile c4c69ff9-3018-0-08236022316850722-package /home/ameen/tmp/npm-8857/1369955783018-0.08236022316850722/package
+26 verbose lock /home/ameen/tmp/npm-8857/1369955783018-0.08236022316850722/package /home/ameen/.npm/c4c69ff9-3018-0-08236022316850722-package.lock
+27 silly lockFile 401b39a2-3018-0-08236022316850722-tmp-tgz /home/ameen/tmp/npm-8857/1369955783018-0.08236022316850722/tmp.tgz
+28 verbose lock /home/ameen/tmp/npm-8857/1369955783018-0.08236022316850722/tmp.tgz /home/ameen/.npm/401b39a2-3018-0-08236022316850722-tmp-tgz.lock
+29 silly gunzTarPerm modes [ '755', '644' ]
+30 silly gunzTarPerm extractEntry package.json
+31 silly gunzTarPerm modified mode [ 'package.json', 436, 420 ]
+32 silly gunzTarPerm extractEntry .npmignore
+33 silly gunzTarPerm modified mode [ '.npmignore', 436, 420 ]
+34 silly gunzTarPerm extractEntry examples.js
+35 silly gunzTarPerm modified mode [ 'examples.js', 436, 420 ]
+36 silly gunzTarPerm extractEntry mtgox.js
+37 silly gunzTarPerm modified mode [ 'mtgox.js', 436, 420 ]
+38 silly gunzTarPerm extractEntry readme.md
+39 silly gunzTarPerm modified mode [ 'readme.md', 436, 420 ]
+40 verbose read json /home/ameen/tmp/npm-8857/1369955783018-0.08236022316850722/package/package.json
+41 silly lockFile c4c69ff9-3018-0-08236022316850722-package /home/ameen/tmp/npm-8857/1369955783018-0.08236022316850722/package
+42 silly lockFile c4c69ff9-3018-0-08236022316850722-package /home/ameen/tmp/npm-8857/1369955783018-0.08236022316850722/package
+43 silly lockFile 401b39a2-3018-0-08236022316850722-tmp-tgz /home/ameen/tmp/npm-8857/1369955783018-0.08236022316850722/tmp.tgz
+44 silly lockFile 401b39a2-3018-0-08236022316850722-tmp-tgz /home/ameen/tmp/npm-8857/1369955783018-0.08236022316850722/tmp.tgz
+45 verbose from cache /home/ameen/tmp/npm-8857/1369955783018-0.08236022316850722/package/package.json
+46 verbose tar pack [ '/home/ameen/.npm/mtgox-apiv2/1.0.3/package.tgz',
+46 verbose tar pack   '/home/ameen/tmp/npm-8857/1369955783018-0.08236022316850722/package' ]
+47 verbose tarball /home/ameen/.npm/mtgox-apiv2/1.0.3/package.tgz
+48 verbose folder /home/ameen/tmp/npm-8857/1369955783018-0.08236022316850722/package
+49 silly lockFile c4c69ff9-3018-0-08236022316850722-package /home/ameen/tmp/npm-8857/1369955783018-0.08236022316850722/package
+50 verbose lock /home/ameen/tmp/npm-8857/1369955783018-0.08236022316850722/package /home/ameen/.npm/c4c69ff9-3018-0-08236022316850722-package.lock
+51 silly lockFile 8a39e8a2-pm-mtgox-apiv2-1-0-3-package-tgz /home/ameen/.npm/mtgox-apiv2/1.0.3/package.tgz
+52 verbose lock /home/ameen/.npm/mtgox-apiv2/1.0.3/package.tgz /home/ameen/.npm/8a39e8a2-pm-mtgox-apiv2-1-0-3-package-tgz.lock
+53 silly lockFile c4c69ff9-3018-0-08236022316850722-package /home/ameen/tmp/npm-8857/1369955783018-0.08236022316850722/package
+54 silly lockFile c4c69ff9-3018-0-08236022316850722-package /home/ameen/tmp/npm-8857/1369955783018-0.08236022316850722/package
+55 silly lockFile 8a39e8a2-pm-mtgox-apiv2-1-0-3-package-tgz /home/ameen/.npm/mtgox-apiv2/1.0.3/package.tgz
+56 silly lockFile 8a39e8a2-pm-mtgox-apiv2-1-0-3-package-tgz /home/ameen/.npm/mtgox-apiv2/1.0.3/package.tgz
+57 silly lockFile e4c6c6d0-en-npm-mtgox-apiv2-1-0-3-package /home/ameen/.npm/mtgox-apiv2/1.0.3/package
+58 verbose lock /home/ameen/.npm/mtgox-apiv2/1.0.3/package /home/ameen/.npm/e4c6c6d0-en-npm-mtgox-apiv2-1-0-3-package.lock
+59 silly lockFile e4c6c6d0-en-npm-mtgox-apiv2-1-0-3-package /home/ameen/.npm/mtgox-apiv2/1.0.3/package
+60 silly lockFile e4c6c6d0-en-npm-mtgox-apiv2-1-0-3-package /home/ameen/.npm/mtgox-apiv2/1.0.3/package
+61 verbose tar unpack /home/ameen/.npm/mtgox-apiv2/1.0.3/package.tgz
+62 silly lockFile e4c6c6d0-en-npm-mtgox-apiv2-1-0-3-package /home/ameen/.npm/mtgox-apiv2/1.0.3/package
+63 verbose lock /home/ameen/.npm/mtgox-apiv2/1.0.3/package /home/ameen/.npm/e4c6c6d0-en-npm-mtgox-apiv2-1-0-3-package.lock
+64 silly lockFile 8a39e8a2-pm-mtgox-apiv2-1-0-3-package-tgz /home/ameen/.npm/mtgox-apiv2/1.0.3/package.tgz
+65 verbose lock /home/ameen/.npm/mtgox-apiv2/1.0.3/package.tgz /home/ameen/.npm/8a39e8a2-pm-mtgox-apiv2-1-0-3-package-tgz.lock
+66 silly gunzTarPerm modes [ '755', '644' ]
+67 silly gunzTarPerm extractEntry package.json
+68 silly gunzTarPerm extractEntry .npmignore
+69 silly gunzTarPerm extractEntry examples.js
+70 silly gunzTarPerm extractEntry mtgox.js
+71 silly gunzTarPerm extractEntry readme.md
+72 verbose read json /home/ameen/.npm/mtgox-apiv2/1.0.3/package/package.json
+73 silly lockFile e4c6c6d0-en-npm-mtgox-apiv2-1-0-3-package /home/ameen/.npm/mtgox-apiv2/1.0.3/package
+74 silly lockFile e4c6c6d0-en-npm-mtgox-apiv2-1-0-3-package /home/ameen/.npm/mtgox-apiv2/1.0.3/package
+75 silly lockFile 8a39e8a2-pm-mtgox-apiv2-1-0-3-package-tgz /home/ameen/.npm/mtgox-apiv2/1.0.3/package.tgz
+76 silly lockFile 8a39e8a2-pm-mtgox-apiv2-1-0-3-package-tgz /home/ameen/.npm/mtgox-apiv2/1.0.3/package.tgz
+77 silly shasum updated bytes 2915
+78 info shasum d909825cd018b7fc06043c280ccac0f58162b23c
+78 info shasum /home/ameen/.npm/mtgox-apiv2/1.0.3/package.tgz
+79 verbose from cache /home/ameen/.npm/mtgox-apiv2/1.0.3/package/package.json
+80 verbose chmod /home/ameen/.npm/mtgox-apiv2/1.0.3/package.tgz 644
+81 verbose chown /home/ameen/.npm/mtgox-apiv2/1.0.3/package.tgz [ 1000, 1000 ]
+82 silly lockFile 3a52ce78- .
+83 silly publish { name: 'mtgox-apiv2',
+83 silly publish   version: '1.0.3',
+83 silly publish   description: 'mtgox.com API v2 client for node.js',
+83 silly publish   keywords: [ 'btc', 'bitcoin', 'mtgox' ],
+83 silly publish   author: { name: 'Ameen Soleimani', url: 'https://github.com/ameen3' },
+83 silly publish   contributors:
+83 silly publish    [ { name: 'Preston Skupinski',
+83 silly publish        email: 'skupinsk@msu.edu',
+83 silly publish        url: 'https://github.com/pskupinski' },
+83 silly publish      { name: 'Lars-Magnus Skog',
+83 silly publish        email: 'lars.magnus.skog@gmail.com',
+83 silly publish        url: 'https://github.com/ralphtheninja' } ],
+83 silly publish   license: 'MIT',
+83 silly publish   dependencies: { querystring: '0.2.0', JSONStream: '0.6.4', request: '2.21.0' },
+83 silly publish   repository:
+83 silly publish    { type: 'git',
+83 silly publish      url: 'https://github.com/ameen3/node-mtgox-apiv2' },
+83 silly publish   main: 'mtgox.js',
+83 silly publish   engines: { node: '~0.10' },
+83 silly publish   bugs:
+83 silly publish    { url: 'https://github.com/ameen3/node-mtgox-apiv2/issues',
+83 silly publish      email: 'ameen.sol@gmail.com' },
+83 silly publish   readmeFilename: 'readme.md',
+83 silly publish   readme: '#MtGOX API v2 Node Client\n\nThis is node.js implementation for using Mt.GOX\'s HTTP API v2.\nTo use it, you must have already created an API Key on their [website](https://mtgox.com/security).\n\n#Credit where it\'s due\n\nnitrous - for the excellent API v2 [documentation](https://bitbucket.org/nitrous/mtgox-api/) that made this possible. Check out the docs to better understand the method parameters and resulting data objects.\n\n[scud43](https://github.com/scud43) - for the work on the node-campbx repo, which this is borrowing very heavily from.\n\nanonymous wiki updater - for creating the Mt.Gox HTTP API [v1 node.js client](https://en.bitcoin.it/wiki/Node.js_Example) on the bitcoin wiki, which this client is entirely based on.  Let\'s face it, people that update wikis are just better people than you and I, and deserve some credit.  \n\n\n\nStay tuned for more stuff...\n\n\n\n',
+83 silly publish   _id: 'mtgox-apiv2@1.0.3',
+83 silly publish   dist: { shasum: 'd909825cd018b7fc06043c280ccac0f58162b23c' },
+83 silly publish   _from: '.' }
+84 verbose url raw mtgox-apiv2
+85 verbose url resolving [ 'https://registry.npmjs.org/', './mtgox-apiv2' ]
+86 verbose url resolved https://registry.npmjs.org/mtgox-apiv2
+87 info trying registry request attempt 1 at 19:16:35
+88 http PUT https://registry.npmjs.org/mtgox-apiv2
+89 http 409 https://registry.npmjs.org/mtgox-apiv2
+90 verbose url raw mtgox-apiv2
+91 verbose url resolving [ 'https://registry.npmjs.org/', './mtgox-apiv2' ]
+92 verbose url resolved https://registry.npmjs.org/mtgox-apiv2
+93 info trying registry request attempt 1 at 19:16:35
+94 http GET https://registry.npmjs.org/mtgox-apiv2
+95 http 200 https://registry.npmjs.org/mtgox-apiv2
+96 error publish fail Cannot publish over existing version.
+96 error publish fail Update the 'version' field in package.json and try again.
+96 error publish fail
+96 error publish fail If the previous version was published in error, see:
+96 error publish fail     npm help unpublish
+96 error publish fail
+96 error publish fail To automatically increment version numbers, see:
+96 error publish fail     npm help version
+97 error System Linux 3.5.0-31-generic
+98 error command "/usr/local/bin/node" "/usr/local/bin/npm" "publish"
+99 error cwd /home/ameen/Desktop/Things/open_source/node-mtgox-apiv2
+100 error node -v v0.10.4
+101 error npm -v 1.2.18
+102 error code EPUBLISHCONFLICT
+103 verbose exit [ 1, true ]

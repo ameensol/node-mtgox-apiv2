@@ -1,6 +1,6 @@
 {
   "name": "mtgox-apiv2",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "mtgox.com API v2 client for node.js",
   "keywords": [
     "btc",
