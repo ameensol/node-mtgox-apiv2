@@ -17,7 +17,7 @@ function MtGoxClient(key, secret, currency) {
 
   function makeRequest(path, args, callback) {
     if (!self.key || !self.secret) {
-      throw "Must provide key and secret to make this API request.";
+      throw new Error("Must provide key and secret to make this API request.");
     }
 
     // generate a nonce
