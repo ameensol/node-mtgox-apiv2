@@ -44,7 +44,7 @@ function MtGoxClient(key, secret, currency) {
   function executeRequest(options, callback) {
     if (typeof callback == "function") {
       request(options, function (err, res, body) {
-        if (res.statusCode == 200) {
+        if (res && res.statusCode == 200) {
           callback(null, JSON.parse(body));
         } else {
           callback(new Error("Request failed with " + res.statusCode));
