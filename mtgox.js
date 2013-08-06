@@ -135,7 +135,7 @@ function MtGoxClient(key, secret, currency) {
 
   self.fetchTrades = function(since, callback) {
     var args = {};
-    if (since) args.since = since;
+    if (typeof since != undefined) args.since = since;
     return makePublicRequest(self._currency + "/money/trades/fetch", args, callback);
   };
 
