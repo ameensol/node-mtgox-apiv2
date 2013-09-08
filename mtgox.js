@@ -9,6 +9,8 @@ function MtGoxClient(key, secret, currency) {
   self.secret = secret;
   self._currency = currency || "BTCUSD";
 
+  var SATOSHI_FACTOR = Math.pow(10,8);
+
   function makePublicRequest(path, args, callback) {
     var params = querystring.stringify(args);
     if (params) path = path + "?" + params;
@@ -153,6 +155,13 @@ function MtGoxClient(key, secret, currency) {
     if (page) args.page = page;
     makeRequest("money/wallet/history", args, callback);
   };
+
+  self.sendBitcoin = function(address, amount, fee, callback) {
+    var amountInt = amount * SATOSHI_FACTOR;
+    var feeInt = fee * SATOSHI_FACTOR;
+    var args = { address: address, amount_int: amountInt, fee_int: feeInt };
+    makeRequest("money/bitcoin/send_simple", args, callback);
+  }
 
   // More to come!
 }
