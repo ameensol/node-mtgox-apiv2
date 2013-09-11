@@ -55,6 +55,16 @@ client.add("bid", "1", "1", function(err, json) {
     console.log(json);
 }); */
 
+// Will send 0.01 bitcoins to bitcoinAddress with a 0.0001 btc fee.
+/* Commented for your protection
+var bitcoinAddress = '<your bitcoin address here>';
+client.sendBitcoin(bitcoinAddress, 0.01, 0.0001, function(err, json) {
+    if (err) { throw err; }
+    console.log("---------------Send Bitcoins:--------------");
+    console.log(json);
+});
+*/
+
 client.cancel("1234567890", function(err, json) {
     if (err) { throw err; }
     console.log("---------------Cancel:--------------");
