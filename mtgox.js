@@ -161,6 +161,18 @@ function MtGoxClient(key, secret, currency) {
     var feeInt = fee * SATOSHI_FACTOR;
     var args = { address: address, amount_int: amountInt, fee_int: feeInt };
     makeRequest("money/bitcoin/send_simple", args, callback);
+  };
+
+  self.depositAddress = function(callback) {
+    self.info(function(err, json) {
+      if (err) return callback(err);
+      if (json.result !== "success") {
+        var error = new Error("Unexpected response while retrieving account number: " + json.result);
+        return callback(error);
+      }
+      var args = { "account": json.data.Link };
+      makeRequest(self._currency + "/money/bitcoin/get_address", args, callback);
+    });
   }
 
   // More to come!
