@@ -109,3 +109,9 @@ client.history("USD", null, function(err, json) {
         console.log(el);
     });
 });
+
+client.depositAddress(function(err, json) {
+    if (err) { throw err; }
+    console.log("---------------Deposit Address:--------------");
+    console.log(json);
+});
