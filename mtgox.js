@@ -1,6 +1,7 @@
 var querystring = require("querystring"),
   crypto = require("crypto"),
   request = require("request"),
+  microtime = require("microtime"),
   JSONStream = require("JSONStream");
 
 function MtGoxClient(key, secret, currency) {
@@ -23,7 +24,7 @@ function MtGoxClient(key, secret, currency) {
     }
 
     // generate a nonce
-    args.nonce = (new Date()).getTime() * 1000;
+    args.nonce = microtime.now();
     // compute the post data
     var postData = querystring.stringify(args);
     // append the path to the post data
