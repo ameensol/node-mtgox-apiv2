@@ -10,7 +10,11 @@
   "author": "Ameen Soleimani (https://github.com/ameen3)",
   "contributors": [
     "Preston Skupinski <skupinsk@msu.edu> (https://github.com/pskupinski)",
-    "Lars-Magnus Skog <lars.magnus.skog@gmail.com> (https://github.com/ralphtheninja)"
+    "Lars-Magnus Skog <lars.magnus.skog@gmail.com> (https://github.com/ralphtheninja)",
+    "Mike van Rossum (https://github.com/askmike)",
+    "pulsecat (https://github.com/pulsecat)",
+    "Josh Harvey (https://github.com/joshmh)",
+    "Roger Enriquez Jr (https://github.com/rnreekez)"
   ],
   "license": "MIT",
   "dependencies": {
