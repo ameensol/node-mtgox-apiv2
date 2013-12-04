@@ -114,7 +114,7 @@ function MtGoxClient(key, secret, currency) {
       "type": type,
       "amount_int": amount_int
     };
-    if (price) args.price_int = price_int;
+    if (price_int) args.price_int = price_int;
     makeRequest(self._currency + "/money/order/add", args, callback);
   };
 
