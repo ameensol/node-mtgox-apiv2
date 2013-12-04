@@ -109,12 +109,12 @@ function MtGoxClient(key, secret, currency) {
   };
 
   // price is an optional argument, if not used it must be set to null
-  self.add = function(type, amount, price, callback) {
+  self.add = function(type, amount_int, price_int, callback) {
     var args = {
       "type": type,
-      "amount": amount
+      "amount_int": amount_int
     };
-    if (price) args.price = price;
+    if (price) args.price_int = price_int;
     makeRequest(self._currency + "/money/order/add", args, callback);
   };
 
