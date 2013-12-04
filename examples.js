@@ -2,9 +2,6 @@ var MtGoxClient = require("./mtgox");
 
 var client = new MtGoxClient("my_key", "my_secret");
 
-// If too many of these functions are called at the same time,
-// you may get an "invalid nonce" error - comment what you don't need.
-
 client.info(function(err, json) {
     if (err) { throw err; }
     console.log("---------------Client Info:--------------");
@@ -32,7 +29,7 @@ client.currency(function(err, json) {
 client.ticker(function(err, json) {
     if (err) { throw err; }
     console.log("---------------Ticker:--------------");
-    console.log(json);
+    console.log(json);;
 });
 
 client.tickerFast(function(err, json) {
@@ -48,22 +45,22 @@ client.quote("ask", 100000000, function(err, json) {
 });
 
 // Will place a bid for 1 bitcoin at a price of 1 dollar,
-/* Commented for your protection
-client.add("bid", "1", "1", function(err, json) {
-    if (err) { throw err; }
-    console.log("---------------Add:--------------");
-    console.log(json);
-}); */
+// Commented for your protection
+// client.add("bid", "1", "1", function(err, json) {
+//     if (err) { throw err; }
+//     console.log("---------------Add:--------------");
+//     console.log(json);
+// }); 
 
 // Will send 0.01 bitcoins to bitcoinAddress with a 0.0001 btc fee.
-/* Commented for your protection
-var bitcoinAddress = '<your bitcoin address here>';
-client.sendBitcoin(bitcoinAddress, 0.01, 0.0001, function(err, json) {
-    if (err) { throw err; }
-    console.log("---------------Send Bitcoins:--------------");
-    console.log(json);
-});
-*/
+// Commented for your protection
+// var bitcoinAddress = '<your bitcoin address here>';
+// client.sendBitcoin(bitcoinAddress, 0.01, 0.0001, function(err, json) {
+//     if (err) { throw err; }
+//     console.log("---------------Send Bitcoins:--------------");
+//     console.log(json);
+// });
+
 
 client.cancel("1234567890", function(err, json) {
     if (err) { throw err; }
