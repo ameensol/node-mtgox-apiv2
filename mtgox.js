@@ -47,13 +47,16 @@ function MtGoxClient(key, secret, currency) {
   function executeRequest(options, callback) {
     if (typeof callback == "function") {
       request(options, function (err, res, body) {
-        
-        if(!res || res.statusCode != 200) {
-          return callback(new Error("Request failed"));
+        var json;
+      
+        if (err  || !res || res.statusCode != 200) {
+          return callback(err || new Error("Request failed"));
         }
 
+        // This try-catch handles cases where Mt.Gox returns 200 but responds with HTML,
+        // causing the JSON.parse to throw
         try {
-            var json = JSON.parse(body);
+            json = JSON.parse(body);
         } catch(err) {
           if (body.indexOf("<") != -1) {
             return callback(new Error("MtGox responded with html:\n" + body));
