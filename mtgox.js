@@ -56,9 +56,10 @@ function MtGoxClient(key, secret, currency) {
             callback(new Error("Request failed"));
           }
         } catch(err) {
-          if (buffer.indexOf("<") != -1) {
-            callback(new Error("MtGox responded with html:\n" + buffer.toString('utf8')));
+          if (body.indexOf("<") != -1) {
+            return callback(new Error("MtGox responded with html:\n" + body));
           }
+          callback(new Error("JSON parse error: " + err))
         }
       });
     } else {
