@@ -47,20 +47,22 @@ function MtGoxClient(key, secret, currency) {
   function executeRequest(options, callback) {
     if (typeof callback == "function") {
       request(options, function (err, res, body) {
+        
+        if(!res || res.statusCode != 200) {
+          return callback(new Error("Request failed"));
+        }
+
         try {
-          if (res && res.statusCode == 200) {
-            callback(null, JSON.parse(body));
-          } else if(res){
-            callback(new Error("Request failed with " + res.statusCode));
-          } else {
-            callback(new Error("Request failed"));
-          }
+            var json = JSON.parse(body);
         } catch(err) {
           if (body.indexOf("<") != -1) {
             return callback(new Error("MtGox responded with html:\n" + body));
+          } else {
+            return callback(new Error("JSON parse error: " + err));  
           }
-          callback(new Error("JSON parse error: " + err))
         }
+        
+        callback(null, json);
       });
     } else {
       var parser = JSONStream.parse(["data", true]);
